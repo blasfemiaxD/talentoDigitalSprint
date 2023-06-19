@@ -5,6 +5,7 @@ import cl.talentodigital.sprint_JSP.models.UserModel;
 import cl.talentodigital.sprint_JSP.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import cl.talentodigital.sprint_JSP.util.CrearLog;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -15,11 +16,31 @@ public class UserService {
     UserRepository userRepository;
 
     public ArrayList<UserModel> allUser (){
-        return (ArrayList<UserModel>) userRepository.findAll();
+        ArrayList<UserModel> userList = null;
+
+        try{
+            userList = new ArrayList<>();
+            userList = (ArrayList<UserModel>) userRepository.findAll();
+        }catch (Exception e){
+            CrearLog.errorLog("Error allUser: " +e.getMessage());
+        }
+
+        return userList;
+
     }
 
     public ArrayList<UserModel> allUserDesc (){
-        return (ArrayList<UserModel>) userRepository.allUserDesc();
+
+        ArrayList<UserModel> userList = null;
+
+        try{
+            userList = new ArrayList<>();
+            userList =  (ArrayList<UserModel>) userRepository.allUserDesc();
+        }catch (Exception e){
+            CrearLog.errorLog("Error allUserDesc: " +e.getMessage());
+        }
+
+        return userList;
     }
 
     public ArrayList<UserModel> allUserByRol (Long rol){
@@ -39,6 +60,7 @@ public class UserService {
             userRepository.deleteById(id);
             return true;
         }catch (Exception e){
+            CrearLog.errorLog("Error deleteUserById: " +e.getMessage());
             return false;
         }
     }
