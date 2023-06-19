@@ -20,6 +20,6 @@ Siga estos pasos para configurar y ejecutar el proyecto:
 1. Clonar el repositorio:
 > git clone https://github.com/tu-usuario/nombre-del-repositorio.git
 2. Navegar al directorio del proyecto:
-3. Compilar y empaquetar el proyecto usando Maven:
-> mvn clean package
+3. Compilar el proyecto utilizando el siquiente comando usando Maven:
+> mvn clean spring-boot:test-run
 4. Ejecutar la aplicación:
